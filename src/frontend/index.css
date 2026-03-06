@@ -1,0 +1,451 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Space Portfolio — Black & White Theme ─────────────── */
+
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  src: url('/assets/fonts/BricolageGrotesque-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: url('/assets/fonts/CabinetGrotesk-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/assets/fonts/GeistMono-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Space Black & White */
+    --background: 0 0 0;
+    --foreground: 1 0 0;
+    --card: 0.08 0 0;
+    --card-foreground: 1 0 0;
+    --popover: 0.08 0 0;
+    --popover-foreground: 1 0 0;
+    --primary: 1 0 0;
+    --primary-foreground: 0 0 0;
+    --secondary: 0.15 0 0;
+    --secondary-foreground: 1 0 0;
+    --muted: 0.12 0 0;
+    --muted-foreground: 0.6 0 0;
+    --accent: 0.9 0 0;
+    --accent-foreground: 0 0 0;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.2 0 0;
+    --input: 0.12 0 0;
+    --ring: 0.8 0 0;
+    --chart-1: 1 0 0;
+    --chart-2: 0.75 0 0;
+    --chart-3: 0.55 0 0;
+    --chart-4: 0.35 0 0;
+    --chart-5: 0.15 0 0;
+    --sidebar: 0.08 0 0;
+    --sidebar-foreground: 1 0 0;
+    --sidebar-primary: 1 0 0;
+    --sidebar-primary-foreground: 0 0 0;
+    --sidebar-accent: 0.15 0 0;
+    --sidebar-accent-foreground: 1 0 0;
+    --sidebar-border: 0.2 0 0;
+    --sidebar-ring: 0.8 0 0;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-color: #000000;
+    color: #ffffff;
+    overflow: hidden;
+    font-family: 'Cabinet Grotesk', sans-serif;
+  }
+}
+
+/* ─── Scroll Snap Container ──────────────────────────────── */
+
+.scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-section {
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hide scrollbar */
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+.scroll-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ─── Keyframes ──────────────────────────────────────────── */
+
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes orbitRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbitRingReverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes letterReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.85);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 12px rgba(255,255,255,0.15),
+      0 0 24px rgba(255,255,255,0.08);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(255,255,255,0.25),
+      0 0 40px rgba(255,255,255,0.12);
+  }
+}
+
+@keyframes pulseGlowText {
+  0%, 100% {
+    text-shadow:
+      0 0 10px rgba(255,255,255,0.4),
+      0 0 20px rgba(255,255,255,0.2);
+  }
+  50% {
+    text-shadow:
+      0 0 20px rgba(255,255,255,0.6),
+      0 0 40px rgba(255,255,255,0.3);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Animation Classes ──────────────────────────────────── */
+
+.animate-letter-reveal {
+  animation: letterReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-slide-up {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease both;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow-text {
+  animation: pulseGlowText 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-orbit {
+  animation: orbitRing 8s linear infinite;
+}
+
+.animate-orbit-reverse {
+  animation: orbitRingReverse 12s linear infinite;
+}
+
+.animate-rotate-slow {
+  animation: rotateSlow 20s linear infinite;
+}
+
+/* ─── Frosted Glass Cards ────────────────────────────────── */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+}
+
+.glass-card-strong {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+}
+
+/* ─── Space Button ───────────────────────────────────────── */
+
+.btn-space {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Geist Mono', monospace;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-space:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.btn-space:active {
+  transform: translateY(0);
+}
+
+.btn-space-primary {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: #000;
+  font-family: 'Geist Mono', monospace;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.7rem 1.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-space-primary:hover {
+  background: #ffffff;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ─── Space Input ────────────────────────────────────────── */
+
+.input-space {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  width: 100%;
+}
+
+.input-space::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.input-space:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Nebula Background ──────────────────────────────────── */
+
+.nebula-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nebula-1 {
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,255,255,0.025) 0%,
+    rgba(200,200,200,0.015) 30%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  border-radius: 50%;
+}
+
+.nebula-2 {
+  position: absolute;
+  bottom: -10%;
+  right: -10%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(180,180,255,0.02) 0%,
+    rgba(100,100,200,0.01) 40%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  border-radius: 50%;
+}
+
+.nebula-3 {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  width: 40%;
+  height: 40%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,200,200,0.015) 0%,
+    rgba(200,100,100,0.008) 50%,
+    transparent 70%
+  );
+  filter: blur(50px);
+  border-radius: 50%;
+}
+
+/* ─── Starfield dots (CSS fallback) ─────────────────────── */
+
+.star-decoration {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: starTwinkle 2s ease-in-out infinite;
+}
+
+/* ─── Section dividers ───────────────────────────────────── */
+
+.cosmic-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.08) 20%,
+    rgba(255,255,255,0.25) 50%,
+    rgba(255,255,255,0.08) 80%,
+    transparent 100%
+  );
+}
+
+/* ─── Nav dots ───────────────────────────────────────────── */
+
+.nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.nav-dot.active {
+  background: white;
+  border-color: white;
+  box-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
+
+.nav-dot:hover:not(.active) {
+  border-color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.2);
+}
+
+/* ─── Scrollbar on dialog ────────────────────────────────── */
+
+.space-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.space-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.space-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+}
+
+/* ─── Reduced Motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
